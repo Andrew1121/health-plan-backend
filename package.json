@@ -1,0 +1,17 @@
+{
+  "name": "health-plan-backend",
+  "version": "1.0.0",
+  "description": "Health Plan API",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "AW",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.0"
+  }
+}
