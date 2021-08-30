@@ -15,7 +15,7 @@ let con= null;
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.setHeader('Access-Control-Allow-Origin', '*');
 
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -73,21 +73,21 @@ app.get('/insert-table', function (req, res) {
         if (err) throw err;
 
         let insertSql = [
-                'INSERT INTO health_plans VALUES(1, \'Standard Plan\', \'0\');',
-                'INSERT INTO health_plans VALUES(2, \'Advanced Plan\', \'188\');',
-                'INSERT INTO health_plans VALUES(3, \'Premium Plan\', \'388\');',
-                'INSERT INTO health_plan_item VALUES(1, \'General\');',
-                'INSERT INTO health_plan_item VALUES(2, \'Specialist\');',
-                'INSERT INTO health_plan_item VALUES(3, \'Physiotherapy\');',
-                'INSERT INTO health_plans_items VALUES(1, 1, b\'1\', b\'1\');',
-                'INSERT INTO health_plans_items VALUES(1, 2, b\'0\', b\'1\');',
-                'INSERT INTO health_plans_items VALUES(1, 3, b\'0\', b\'1\');',
-                'INSERT INTO health_plans_items VALUES(2, 1, b\'1\', b\'1\');',
-                'INSERT INTO health_plans_items VALUES(2, 2, b\'1\', b\'1\');',
-                'INSERT INTO health_plans_items VALUES(2, 3, b\'0\', b\'1\');',
-                'INSERT INTO health_plans_items VALUES(3, 1, b\'1\', b\'1\');',
-                'INSERT INTO health_plans_items VALUES(3, 2, b\'1\', b\'1\');',
-                'INSERT INTO health_plans_items VALUES(3, 3, b\'1\', b\'1\');'
+                'INSERT IGNORE INTO health_plans VALUE (1, \'Standard Plan\', \'0\');',
+                'INSERT IGNORE INTO health_plans VALUE ( 2, \'Advanced Plan\', \'188\');',
+                'INSERT IGNORE INTO health_plans VALUE ( 3, \'Premium Plan\', \'388\');',
+                'INSERT IGNORE INTO health_plan_item VALUE ( 1, \'General\');',
+                'INSERT IGNORE INTO health_plan_item VALUE ( 2, \'Specialist\');',
+                'INSERT IGNORE INTO health_plan_item VALUE ( 3, \'Physiotherapy\');',
+                'INSERT IGNORE INTO health_plans_items VALUE ( 1, 1, b\'1\', b\'1\');',
+                'INSERT IGNORE INTO health_plans_items VALUE ( 1, 2, b\'0\', b\'1\');',
+                'INSERT IGNORE INTO health_plans_items VALUE ( 1, 3, b\'0\', b\'1\');',
+                'INSERT IGNORE INTO health_plans_items VALUE ( 2, 1, b\'1\', b\'1\');',
+                'INSERT IGNORE INTO health_plans_items VALUE ( 2, 2, b\'1\', b\'1\');',
+                'INSERT IGNORE INTO health_plans_items VALUE ( 2, 3, b\'0\', b\'1\');',
+                'INSERT IGNORE INTO health_plans_items VALUE ( 3, 1, b\'1\', b\'1\');',
+                'INSERT IGNORE INTO health_plans_items VALUE ( 3, 2, b\'1\', b\'1\');',
+                'INSERT IGNORE INTO health_plans_items VALUE ( 3, 3, b\'1\', b\'1\');'
         ]
         
         for (let i = 0; i < insertSql.length; i++) {
@@ -95,9 +95,10 @@ app.get('/insert-table', function (req, res) {
 
             con.query(sql, function (err, result) {
                 if (err) throw err;
-                res.send("health plan table data inserted");
             });
         }
+
+        res.send("health plan table data inserted");
     });
 });
 
